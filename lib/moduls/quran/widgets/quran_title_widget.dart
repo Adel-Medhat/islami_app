@@ -25,10 +25,10 @@ class SuraTitleWidget extends StatelessWidget {
             ),
           ),
         ),
-        Container(
+        const SizedBox(
           width: 2,
           height: 40,
-          color: theme.primaryColor,
+          child: VerticalDivider(),
         ),
         Expanded(
           child: Text(
