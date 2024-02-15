@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami/config/application_theme_maneger.dart';
 import 'package:islami/layout/layout_view.dart';
+import 'package:islami/moduls/hadeth/page/hadeth_details_view.dart';
 import 'package:islami/moduls/radio/page/radio_view.dart';
 import 'package:islami/moduls/sebha/page/sebha_view.dart';
 import 'package:islami/moduls/splash/page/splash_view.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         LayoutView.routeName: (context) => const LayoutView(),
         RadioView.routeName: (context) => const RadioView(),
         SebhaView.routeName: (context) => const SebhaView(),
+        HadethDetailsView.routeName: (context) => const HadethDetailsView(),
       },
     );
   }
