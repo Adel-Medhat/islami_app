@@ -59,14 +59,14 @@ class _SebhaViewState extends State<SebhaView> {
                 onTap: () {
                   setState(() {
                     // display sebha with counter
-                    if (tasbehCounter < 5) {
+                    if (tasbehCounter < 33) {
                       tasbehCounter++;
                       angleCounter += 0.1;
                       return;
                     }
 
                     // change Doaa
-                    if (tasbehCounter == 5) {
+                    if (tasbehCounter == 33) {
                       tasbehCounter = 0;
                       doaaCounter++;
                       angleCounter += 0.1;
