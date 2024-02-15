@@ -133,13 +133,12 @@ class QuranView extends StatelessWidget {
           "assets/images/quran_header.png",
           height: mediaQuery.height * 0.2,
         ),
-        Divider(
+        const Divider(
           thickness: 2,
-          color: theme.primaryColor,
         ),
-        Row(
+        const Row(
           children: [
-            const Expanded(
+            Expanded(
               child: Text(
                 "رقم السورة",
                 textAlign: TextAlign.center,
@@ -150,12 +149,12 @@ class QuranView extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: 2,
               height: 35,
-              color: theme.primaryColor,
+              child: VerticalDivider(),
             ),
-            const Expanded(
+            Expanded(
               child: Text(
                 "إسم السورة",
                 textAlign: TextAlign.center,
@@ -168,9 +167,8 @@ class QuranView extends StatelessWidget {
             ),
           ],
         ),
-        Divider(
+        const Divider(
           thickness: 2,
-          color: theme.primaryColor,
         ),
         Expanded(
           child: ListView.builder(

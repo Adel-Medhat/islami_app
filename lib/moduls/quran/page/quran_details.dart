@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami/config/application_theme_maneger.dart';
+import 'package:islami/config/settings_provider.dart';
 import 'package:islami/moduls/quran/page/quran_view.dart';
+import 'package:provider/provider.dart';
 
 class QuranDetails extends StatefulWidget {
   static const String routeName = "quran_details";
@@ -19,13 +22,14 @@ class _QuranDetailsState extends State<QuranDetails> {
     var args = ModalRoute.of(context)?.settings.arguments as SuraDetail;
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
+    var vm = Provider.of<SettingsProvider>(context);
 
     if (versesList.isEmpty) loadData(args.suraNumber);
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            "assets/images/main_background.png",
+            vm.getBackground(),
           ),
           fit: BoxFit.cover,
         ),
@@ -52,7 +56,9 @@ class _QuranDetailsState extends State<QuranDetails> {
             bottom: 15,
           ),
           decoration: BoxDecoration(
-            color: const Color(0xFFF8F8F8).withOpacity(0.8),
+            color: vm.isDark()
+                ? ApplicationThemeManeger.primaryDarkColor.withOpacity(0.8)
+                : Colors.white.withOpacity(0.8),
             borderRadius: BorderRadius.circular(25),
           ),
           child: Column(
@@ -71,13 +77,19 @@ class _QuranDetailsState extends State<QuranDetails> {
                   const SizedBox(
                     width: 10,
                   ),
-                  const Icon(
+                  Icon(
                     Icons.play_circle_fill_rounded,
+                    color: vm.isDark()
+                        ? ApplicationThemeManeger.onPrimaryDarkColor
+                        : Colors.black,
                   ),
                 ],
               ),
               Divider(
-                color: theme.primaryColor,
+                thickness: 1,
+                color: vm.isDark()
+                    ? ApplicationThemeManeger.onPrimaryDarkColor
+                    : ApplicationThemeManeger.primaryColor,
               ),
               if (versesList.isEmpty)
                 Center(
