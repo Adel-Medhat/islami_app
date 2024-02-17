@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:islami/config/application_theme_maneger.dart';
+import 'package:islami/config/settings_provider.dart';
 import 'package:islami/moduls/hadeth/page/hadeth_view.dart';
+import 'package:provider/provider.dart';
 
 class HadethDetailsView extends StatelessWidget {
   static const routeName = "hadethDetails";
@@ -11,12 +14,13 @@ class HadethDetailsView extends StatelessWidget {
     var args = ModalRoute.of(context)?.settings.arguments as HadethData;
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
+    var vm = Provider.of<SettingsProvider>(context);
 
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-            "assets/images/main_background.png",
+            vm.getBackground(),
           ),
           fit: BoxFit.cover,
         ),
@@ -43,7 +47,9 @@ class HadethDetailsView extends StatelessWidget {
             bottom: 15,
           ),
           decoration: BoxDecoration(
-            color: const Color(0xFFF8F8F8).withOpacity(0.8),
+            color: vm.isDark()
+                ? ApplicationThemeManeger.primaryDarkColor.withOpacity(0.8)
+                : Colors.white.withOpacity(0.8),
             borderRadius: BorderRadius.circular(25),
           ),
           child: Column(
@@ -57,7 +63,10 @@ class HadethDetailsView extends StatelessWidget {
                 ),
               ),
               Divider(
-                color: theme.primaryColor,
+                thickness: 1,
+                color: vm.isDark()
+                    ? ApplicationThemeManeger.onPrimaryDarkColor
+                    : ApplicationThemeManeger.primaryColor,
               ),
               Expanded(
                 child: SingleChildScrollView(

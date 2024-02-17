@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:islami/config/settings_provider.dart';
 import 'package:islami/layout/layout_view.dart';
+import 'package:provider/provider.dart';
 
 class SplashView extends StatefulWidget {
   static const String routeName = "/";
@@ -32,9 +34,12 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     Size mediaQuery = MediaQuery.of(context).size;
+    var vm = Provider.of<SettingsProvider>(context);
     return Scaffold(
       body: Image.asset(
-        "assets/images/splash_background.png",
+        vm.currentThemeMode == ThemeMode.light
+            ? "assets/images/splash_background.png"
+            : "assets/images/splash_dark_background.png",
         height: mediaQuery.height,
         width: mediaQuery.width,
         fit: BoxFit.cover,

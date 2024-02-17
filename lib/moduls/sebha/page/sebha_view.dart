@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami/config/application_theme_maneger.dart';
+import 'package:islami/config/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 class SebhaView extends StatefulWidget {
   static const String routeName = "SebhaView";
@@ -46,11 +48,12 @@ class _SebhaViewState extends State<SebhaView> {
 
   @override
   Widget build(BuildContext context) {
+    var vm = Provider.of<SettingsProvider>(context);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Spacer(),
+          const Spacer(),
           Stack(
             clipBehavior: Clip.none,
             alignment: Alignment.topCenter,
@@ -89,6 +92,9 @@ class _SebhaViewState extends State<SebhaView> {
                   angle: angleCounter,
                   child: Image.asset(
                     "assets/images/body of seb7a.png",
+                    color: vm.isDark()
+                        ? ApplicationThemeManeger.onPrimaryDarkColor
+                        : ApplicationThemeManeger.primaryColor,
                   ),
                 ),
               ),
@@ -97,11 +103,14 @@ class _SebhaViewState extends State<SebhaView> {
                 right: 60,
                 child: Image.asset(
                   "assets/images/head of seb7a.png",
+                  color: vm.isDark()
+                      ? ApplicationThemeManeger.onPrimaryDarkColor
+                      : ApplicationThemeManeger.primaryColor,
                 ),
               ),
             ],
           ),
-          Spacer(),
+          const Spacer(),
           const Text(
             "عدد التسبيحات",
             style: TextStyle(
@@ -110,18 +119,20 @@ class _SebhaViewState extends State<SebhaView> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           FloatingActionButton(
-            backgroundColor: ApplicationThemeManeger.primaryColor,
+            backgroundColor: vm.isDark()
+                ? ApplicationThemeManeger.primaryDarkColor
+                : ApplicationThemeManeger.primaryColor,
             child: Text(
               "${tasbehCounter}",
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: "El Messiri",
                 fontSize: 25,
                 fontWeight: FontWeight.w400,
-                color: Colors.black,
+                color: vm.isDark() ? Colors.white : Colors.black,
               ),
             ),
             onPressed: () {},
@@ -131,16 +142,18 @@ class _SebhaViewState extends State<SebhaView> {
             width: 200,
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             margin: const EdgeInsets.symmetric(vertical: 20),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.horizontal(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.horizontal(
                 left: Radius.circular(50),
                 right: Radius.circular(50),
               ),
-              color: ApplicationThemeManeger.primaryColor,
+              color: vm.isDark()
+                  ? ApplicationThemeManeger.onPrimaryDarkColor
+                  : ApplicationThemeManeger.primaryColor,
             ),
             child: doaa[doaaCounter],
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );
